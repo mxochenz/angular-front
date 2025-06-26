@@ -1,6 +1,6 @@
 type Retards = {
   id: number;
-  date_retard: string;
+  date_lateness: string;
   duration: string;
   user_id: number;
 };
