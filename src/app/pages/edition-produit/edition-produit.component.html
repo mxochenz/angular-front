@@ -1,22 +1,26 @@
-<form [formGroup]="formulaire" (ngSubmit)="onClicValider()">
-  <mat-form-field>
-    <mat-label>Nom</mat-label>
-    <input matInput formControlName="name" />
-    @if(formulaire.get("name")?.hasError('required')) {
-    <mat-error>Le nom est obligatoire</mat-error>
-    } @else if(formulaire.get("name")?.hasError('maxlength')) {
-    <mat-error>Le nom doit être de 50 caractères maximum</mat-error>
-    } @else if(formulaire.get("name")?.hasError('minlength')) {
-    <mat-error>Le nom doit être de 3 caractères minimum</mat-error>
-    }
-  </mat-form-field>
+<div
+  class="container-fluid bg-secondary h-100 d-flex justify-content-center flex-column"
+>
+  <form [formGroup]="formulaire" (ngSubmit)="onClicValider()">
+    <mat-form-field>
+      <mat-label>Nom</mat-label>
+      <input matInput formControlName="name" />
+      @if(formulaire.get("name")?.hasError('required')) {
+      <mat-error>Le nom est obligatoire</mat-error>
+      } @else if(formulaire.get("name")?.hasError('maxlength')) {
+      <mat-error>Le nom doit être de 50 caractères maximum</mat-error>
+      } @else if(formulaire.get("name")?.hasError('minlength')) {
+      <mat-error>Le nom doit être de 3 caractères minimum</mat-error>
+      }
+    </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Description</mat-label>
-    <textarea matInput formControlName="description"></textarea>
-    <mat-error>La description doit être de 255 caractères maximum</mat-error>
-  </mat-form-field>
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+      <mat-error>La description doit être de 255 caractères maximum</mat-error>
+    </mat-form-field>
 
-  <button mat-raised-button>Valider</button>
-  <button mat-raised-button routerLink="/accueil">Retour</button>
-</form>
+    <button mat-raised-button>Valider</button>
+    <button mat-raised-button routerLink="/accueil">Retour</button>
+  </form>
+</div>
