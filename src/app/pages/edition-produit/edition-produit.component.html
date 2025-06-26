@@ -1,15 +1,13 @@
-<div
-  class="container-fluid bg-secondary h-100 d-flex justify-content-center flex-column"
->
+<div class="container-fluid h-100 d-flex justify-content-center flex-column">
   <form [formGroup]="formulaire" (ngSubmit)="onClicValider()">
     <mat-form-field>
       <mat-label>Nom</mat-label>
-      <input matInput formControlName="name" />
-      @if(formulaire.get("name")?.hasError('required')) {
+      <input matInput formControlName="title" />
+      @if(formulaire.get("title")?.hasError('required')) {
       <mat-error>Le nom est obligatoire</mat-error>
-      } @else if(formulaire.get("name")?.hasError('maxlength')) {
+      } @else if(formulaire.get("title")?.hasError('maxlength')) {
       <mat-error>Le nom doit être de 50 caractères maximum</mat-error>
-      } @else if(formulaire.get("name")?.hasError('minlength')) {
+      } @else if(formulaire.get("title")?.hasError('minlength')) {
       <mat-error>Le nom doit être de 3 caractères minimum</mat-error>
       }
     </mat-form-field>
@@ -19,6 +17,39 @@
       <textarea matInput formControlName="description"></textarea>
       <mat-error>La description doit être de 255 caractères maximum</mat-error>
     </mat-form-field>
+
+    <!-- Date de début -->
+    <mat-form-field>
+      <mat-label>Date de début</mat-label>
+      <input matInput type="date" formControlName="start_date" />
+      @if(formulaire.get("date")?.hasError('required')) {
+      <mat-error> La date de début est obligatoire </mat-error>
+      }
+    </mat-form-field>
+
+    <!-- Date de fin -->
+    <mat-form-field>
+      <mat-label>Date de fin</mat-label>
+      <input matInput type="date" formControlName="end_date" />
+      @if(formulaire.get("date")?.hasError('required')) {
+      <mat-error>La date de début est obligatoire</mat-error>
+      }
+    </mat-form-field>
+
+    <!-- Message d'erreur global pour la plage de dates -->
+    @if (formulaire.hasError('dateRange')) {
+    <mat-error>La date de fin doit être après la date de début</mat-error>
+    }
+
+    <!-- Champ image -->
+    <label for="image"></label>
+    <input
+      id="image"
+      type="file"
+      (change)="onFileSelected($event)"
+      accept="image/*"
+      class="form-control mb-3"
+    />
 
     <button mat-raised-button>Valider</button>
     <button mat-raised-button routerLink="/accueil">Retour</button>

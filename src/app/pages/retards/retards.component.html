@@ -1,4 +1,4 @@
-<div class="container-fluid bg-secondary h-100">
+<div class="container-fluid h-100">
   <div class="container">
     <div class="d-flex justify-content-between align-items-center">
       <h1 class="text-center text-white my-3">Liste des retards</h1>
@@ -9,27 +9,26 @@
 
     <div class="row row-cols-2">
       @for (retard of retards; track $index) {
-
       <div class="mb-4">
         <mat-card appearance="outlined">
           <mat-card-header>
-            <mat-card-title
-              >Date :
-              {{ retard.date_lateness | date : "MMM dd" }}</mat-card-title
-            >
+            <mat-card-title>
+              Date : {{ retard.date_lateness | date : "dd/MM/yyyy" }}
+            </mat-card-title>
           </mat-card-header>
           <mat-card-content>
             <p>Durée du retard : {{ retard.duration }} min</p>
-            <p>N° stagiaire : {{ retard.user_id }}</p>
+            <p>Stagiaire : {{ retard.user_id }}</p>
           </mat-card-content>
-
           <mat-card-actions>
             <button mat-button routerLink="/modifier-retard/{{ retard.id }}">
               Modifier
             </button>
+            @if (userRole !== 'stagiaire') {
             <button mat-button (click)="onClickSupprimer(retard)">
               Supprimer
             </button>
+            }
           </mat-card-actions>
         </mat-card>
       </div>

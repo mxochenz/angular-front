@@ -1,6 +1,8 @@
 type Training = {
-  training_id: number;
-  name: string;
+  id: number;
+  title: string;
   description: string;
+  start_date: string;
+  end_date: string;
   image: string;
 };

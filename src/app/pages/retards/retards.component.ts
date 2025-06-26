@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -14,23 +15,27 @@ import { DatePipe } from '@angular/common';
 })
 export class RetardsComponent {
   http = inject(HttpClient);
-  retards: Retards[] = [];
+  authService = inject(AuthService);
+
+  retards: Retard[] = [];
+  userRole: string = 'guest';
 
   ngOnInit() {
     this.refreshRetards();
+    this.userRole = this.authService.getUserRole();
   }
 
   refreshRetards() {
     this.http
-      .get<Retards[]>('http://localhost:5000/retard')
-      .subscribe((retard) => (this.retards = retard));
+      .get<Retard[]>('http://localhost:5000/retard')
+      .subscribe((retards) => (this.retards = retards));
   }
 
-  onClickSupprimer(retard: Retards) {
+  onClickSupprimer(retard: Retard) {
     if (confirm('Voulez-vous vraiment supprimer ce retard ?')) {
       this.http
         .delete('http://localhost:5000/retard/' + retard.id)
-        .subscribe((reponse) => this.refreshRetards());
+        .subscribe(() => this.refreshRetards());
     }
   }
 }

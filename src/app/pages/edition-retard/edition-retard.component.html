@@ -1,3 +1,46 @@
-<div
-  class="container-fluid bg-secondary h-100 d-flex justify-content-center flex-column"
-></div>
+<div class="container-fluid h-100 d-flex justify-content-center flex-column">
+  <form [formGroup]="formulaire" (ngSubmit)="onClicValider()">
+    <mat-form-field>
+      <mat-label>Date</mat-label>
+      <input matInput type="date" formControlName="date_lateness" />
+      @if (formulaire.get('date_lateness')?.hasError('required')) {
+      <mat-error>La date est obligatoire</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Durée (minutes)</mat-label>
+      <input matInput type="number" formControlName="duration" />
+      @if (formulaire.get('duration')?.hasError('required')) {
+      <mat-error>La durée est obligatoire</mat-error>
+      } @if (formulaire.get('duration')?.hasError('min')) {
+      <mat-error>La durée doit être positive</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Stagiaire</mat-label>
+
+      <!-- Mode admin/validateur -->
+      @if (authService.getUserRole() !== 'stagiaire') {
+      <mat-select formControlName="user_id">
+        @for (stagiaire of stagiaires; track stagiaire.id) {
+        <mat-option [value]="stagiaire.id">{{ stagiaire.email }}</mat-option>
+        }
+      </mat-select>
+      }
+
+      <!-- Mode stagiaire -->
+      @if (authService.getUserRole() === 'stagiaire') {
+      <input matInput formControlName="user_id" [disabled]="true" />
+      } @if (formulaire.get('user_id')?.hasError('required')) {
+      <mat-error>Le stagiaire est obligatoire</mat-error>
+      }
+    </mat-form-field>
+
+    <button mat-raised-button color="primary">Valider</button>
+    <button mat-raised-button routerLink="/retards" type="button">
+      Retour
+    </button>
+  </form>
+</div>

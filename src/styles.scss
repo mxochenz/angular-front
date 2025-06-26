@@ -10,6 +10,10 @@ body {
   overflow-y: auto;
 }
 
+.container-fluid {
+  background-color: hsl(210deg 10.81% 14.51%);
+}
+
 form:has(.mat-mdc-form-field) {
   padding: 1em;
   max-width: 600px;

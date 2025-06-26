@@ -1,4 +1,4 @@
-type Retards = {
+type Retard = {
   id: number;
   date_lateness: string;
   duration: string;
