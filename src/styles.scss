@@ -1,0 +1,48 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+// form.global {
+//   display: flex;
+//   flex-direction: column;
+//   max-width: 600px;
+//   width: 100%;
+//   padding: 1em;
+//   margin: 0 auto;
+// }
+
+form:has(.mat-mdc-form-field) {
+  padding: 1em;
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+
+  .mat-mdc-form-field {
+    display: block;
+  }
+}
+
+mat-snack-bar-container {
+  &.valid .mat-mdc-snackbar-surface {
+    background-color: green;
+  }
+
+  &.error .mat-mdc-snackbar-surface {
+    background-color: rgb(198, 37, 5);
+  }
+
+  &.warning .mat-mdc-snackbar-surface {
+    background-color: rgba(202, 151, 0, 0.929);
+  }
+
+  &.info .mat-mdc-snackbar-surface {
+    background-color: rgb(0, 140, 255);
+  }
+}
