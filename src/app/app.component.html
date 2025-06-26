@@ -18,13 +18,12 @@
 
     <div class="collapse navbar-collapse" id="navbarsExample03">
       <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+        @if (!auth.connecte) {
         <li class="nav-item">
           <a class="nav-link" routerLink="/accueil" routerLinkActive="active"
             >Accueil</a
           >
         </li>
-
-        @if (!auth.connecte) {
         <li class="nav-item">
           <a class="nav-link" routerLink="/connexion" routerLinkActive="active"
             >Connexion</a
@@ -39,6 +38,22 @@
           >
         </li>
         } @else {
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/accueil" routerLinkActive="active"
+            >Accueil</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/formation" routerLinkActive="active"
+            >Formation</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/retards" routerLinkActive="active"
+            >Retards</a
+          >
+        </li>
+
         <li class="nav-item">
           <a
             class="nav-link"

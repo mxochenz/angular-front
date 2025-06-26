@@ -9,15 +9,6 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-// form.global {
-//   display: flex;
-//   flex-direction: column;
-//   max-width: 600px;
-//   width: 100%;
-//   padding: 1em;
-//   margin: 0 auto;
-// }
-
 form:has(.mat-mdc-form-field) {
   padding: 1em;
   max-width: 600px;

@@ -37,10 +37,6 @@ export class EditionProduitComponent {
       [Validators.required, Validators.minLength(3), Validators.maxLength(50)],
     ],
     description: ['', [Validators.maxLength(255)]],
-    image: [
-      '',
-      [Validators.required, Validators.pattern('^.+\\.(jpg|jpeg|png|gif)$')],
-    ],
   });
 
   trainingEdite?: Training;
@@ -48,11 +44,11 @@ export class EditionProduitComponent {
   ngOnInit() {
     this.activatedRoute.params.subscribe((parametres) => {
       //si c'est une édition (si il y a un id dans l'URL)
-      if (parametres['training_id'] !== undefined) {
+      console.log(parametres);
+
+      if (parametres['id'] !== undefined) {
         this.http
-          .get<any>(
-            'http://localhost:5000/training/' + parametres['training_id']
-          )
+          .get<any>('http://localhost:5000/training/' + parametres['id'])
           .subscribe((training) => {
             this.trainingEdite = training;
             this.formulaire.patchValue(training);
@@ -76,7 +72,7 @@ export class EditionProduitComponent {
                 'La formation a bien été modifié',
                 'valid'
               );
-              this.router.navigateByUrl('/accueil');
+              this.router.navigateByUrl('/formation');
             },
             error: (erreur) => {
               if (erreur.status === 409) {
@@ -93,7 +89,7 @@ export class EditionProduitComponent {
           .subscribe({
             next: (reponse) => {
               this.notification.show('La formation a bien été ajouté', 'valid');
-              this.router.navigateByUrl('/accueil');
+              this.router.navigateByUrl('/formation');
             },
             error: (erreur) => {
               if (erreur.status === 409) {

@@ -1,36 +1,23 @@
-<div class="container">
-  <button mat-raised-button routerLink="/ajout-produit">
-    Ajouter une formation
-  </button>
+<div class="container-fluid bg-dark h-100">
+  <div class="px-4 pt-5 text-center">
+    <h1 class="display-4 fw-bold text-white">Bienvenue</h1>
 
-  <div class="row row-cols-2">
-    @for (training of trainings; track $index) {
-
-    <div class="mb-4">
-      <mat-card appearance="outlined">
-        <mat-card-header>
-          <mat-card-title>{{ training.name }}</mat-card-title>
-          <mat-card-subtitle>{{ training.description }}</mat-card-subtitle>
-        </mat-card-header>
-        <img
-          mat-card-image
-          src="http://localhost:5000/{{ training.image }}"
-          alt="{{ training.name }}"
-        />
-
-        <mat-card-actions>
-          <button
-            mat-button
-            routerLink="/modifier-produit/{{ training.training_id }}"
-          >
-            Modifier
-          </button>
-          <button mat-button (click)="onClickSupprimer(training)">
-            Supprimer
-          </button>
-        </mat-card-actions>
-      </mat-card>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">
+        Cette page est dédiée à l'accueil des utilisateurs.
+      </p>
     </div>
-    }
+    <div class="overflow-hidden">
+      <div class="container px-5">
+        <img
+          src="https://bs-uploads.toptal.io/blackfish-uploads/components/blog_post_page/content/cover_image_file/cover_image/1275957/retina_1708x683_cover-top-18-most-common-angularjs-developer-mistakes-41f9ad303a51db70e4a5204e101e7414.png"
+          class="img-fluid border rounded-3 shadow-lg mb-4"
+          alt="Image d'accueil"
+          width="700"
+          height="500"
+          loading="lazy"
+        />
+      </div>
+    </div>
   </div>
 </div>
