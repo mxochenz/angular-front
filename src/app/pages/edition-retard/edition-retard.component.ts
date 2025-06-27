@@ -50,7 +50,6 @@ export class EditionRetardComponent {
       next: (stagiaires: Stagiaire[]) => {
         this.stagiaires = stagiaires;
         this.loading = false;
-        // ... reste du code
       },
       error: (err) => {
         this.loading = false;
@@ -66,7 +65,7 @@ export class EditionRetardComponent {
             this.formulaire.patchValue({
               date_lateness: retard.date_lateness.substring(0, 10),
               duration: retard.duration,
-              user_id: retard.user_id, // Maintenant compatible (number)
+              user_id: retard.user_id, 
             });
           });
       }
@@ -88,8 +87,6 @@ export class EditionRetardComponent {
   }
 
   onClicValider() {
-    console.log('Stagiaires:', this.stagiaires);
-
     // Désactiver le bouton pendant le traitement
     if (this.loading) return;
     // Réactiver temporairement le champ pour la validation
@@ -104,7 +101,6 @@ export class EditionRetardComponent {
       const userId = Number(formData.user_id);
       console.log("Type de l'ID:", typeof formData.user_id);
 
-      // Vérification que c'est un stagiaire
       // Vérification que c'est un stagiaire
       const selectedUser = this.stagiaires.find((s) => s.id === userId);
       console.log('Utilisateur trouvé:', selectedUser);
